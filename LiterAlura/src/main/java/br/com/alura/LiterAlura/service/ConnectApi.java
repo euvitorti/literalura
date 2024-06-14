@@ -8,9 +8,11 @@ import java.net.http.HttpResponse;
 public class ConnectApi {
 
 //TODO    String book
-    public String connect() {
+    public String connect(String book) {
 
-        URI urlConnection = URI.create("https://gutendex.com/books/?search=dom+casmurro");
+        final String URLCONNECTION = "https://gutendex.com/books/?search=" + book.replace(" ", "+").trim();
+
+        URI urlConnection = URI.create(URLCONNECTION);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(urlConnection)
