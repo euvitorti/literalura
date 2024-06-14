@@ -20,10 +20,10 @@ public class Author {
     private int deathYear;
 
     //RELACIONANDO COM A TABELA AUTHOR
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> bookList = new ArrayList<>();
 
-    private Author(){}
+    public Author(){}
 
     public Author(String name, int birthYear, int deathYear) {
         this.name = name;
@@ -36,4 +36,14 @@ public class Author {
         bookList.add(book);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "\nAuthor: " + name + "\n" +
+                "Birth Year: " + birthYear +
+                "Death Year: " + deathYear;
+    }
 }

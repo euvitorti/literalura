@@ -1,12 +1,10 @@
 
 package br.com.alura.LiterAlura.models.book;
 
-import br.com.alura.LiterAlura.dto.AuthorDTO;
 import br.com.alura.LiterAlura.dto.ResultDataBookDTO;
 import br.com.alura.LiterAlura.models.author.Author;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,7 +17,6 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true)
     private String title;
 
 //    private List<AuthorDTO> authors;
