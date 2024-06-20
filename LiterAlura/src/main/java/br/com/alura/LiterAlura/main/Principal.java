@@ -114,18 +114,28 @@ public class Principal {
         books.forEach(System.out::println);
     }
 
-        private void searchAllAuthor() {
-            // BUSCANDO AS INFORMAÇÕES DO BANCO DE DADOS
-            authorList = authorRepository.findAll();
+    private void searchAllAuthor() {
+        // BUSCANDO AS INFORMAÇÕES DO BANCO DE DADOS
+        authorList = authorRepository.findAll();
 
-            List<Author> author = authorList.stream()
-                    .sorted(Comparator.comparing(Author::getName))
-                    .collect(Collectors.toList());
+        List<Author> author = authorList.stream()
+                .sorted(Comparator.comparing(Author::getName))
+                .collect(Collectors.toList());
 
-            author.forEach(System.out::println);
-        }
+        author.forEach(System.out::println);
+    }
 
     private void searchAuthorByYear() {
+        System.out.println("Digite o ano: ");
+        int year = scanner.nextInt();
+
+        List<Author> authorListByYear = authorRepository.findAuthorByBirthYear(year);
+
+        List<Author> author = authorListByYear.stream()
+                .sorted(Comparator.comparing(Author::getName))
+                .collect(Collectors.toList());
+
+        author.forEach(System.out::println);
     }
 
 //    private void searchAllBook() {
