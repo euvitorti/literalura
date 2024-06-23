@@ -8,6 +8,7 @@ import br.com.alura.LiterAlura.repository.author.AuthorRepository;
 import br.com.alura.LiterAlura.repository.book.BookRepository;
 import br.com.alura.LiterAlura.service.ConnectApi;
 import br.com.alura.LiterAlura.service.ConvertData;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class Principal {
     private BookRepository bookRepository;
 
     List<Author> authorList = new ArrayList<>();
+
+    List<Book> bookList = new ArrayList<>();
 
     public Principal(){}
 
@@ -67,12 +70,12 @@ public class Principal {
                 case 3:
                     searchAuthorByYear();
                     break;
-//                case 4:
-//                    searchAllBook();
-//                    break;
-//                case 5:
-//                    searchBookByLanguage();
-//                    break;
+                case 4:
+                    searchAllBook();
+                    break;
+                case 5:
+                    searchBookByLanguage();
+                    break;
                 case 0:
                     System.out.println("Goodbye👋");
                     break;
@@ -138,20 +141,28 @@ public class Principal {
         author.forEach(System.out::println);
     }
 
-//    private void searchAllBook() {
-//    }
+    @Transactional
+    private void searchAllBook() {
+        bookList = bookRepository.findAll();
 
-//    private void searchBookByLanguage() {
-//        System.out.println("Digite o idioma: ");
-//        var language = scanner.nextLine();
-//
-//        var bookLanguage = bookRepository.findByLanguage(language.toLowerCase());
-//
-//        if (bookLanguage != null) {
-//            System.out.println(bookLanguage);
-//        } else {
-//            System.out.println("Não encontrada.");
-//        }
-//    }
+        List<Book> book = bookList.stream()
+                .sorted(Comparator.comparing(Book::getTitle))
+                .collect(Collectors.toList());
+
+        book.forEach(System.out::println);
+    }
+
+    private void searchBookByLanguage() {
+        System.out.println("Digite o idioma: ");
+        var language = scanner.nextLine();
+
+        var bookLanguage = bookRepository.findByLanguagesContainsIgnoreCase(language);
+
+        if (bookLanguage != null) {
+            System.out.println(bookLanguage);
+        } else {
+            System.out.println("Não encontrada.");
+        }
+    }
 }
 
