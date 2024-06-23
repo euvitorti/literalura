@@ -1,7 +1,5 @@
 # Projeto Literalura 📖 | Alura | ONE
 
-## O projeto ainda não está 100% funcional
-
 Pesquise o seu livro favorito e leia online!
 
 ## Para o que a aplicação está habilitada? 🤔
