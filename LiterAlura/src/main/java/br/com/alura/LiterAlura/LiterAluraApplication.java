@@ -1,7 +1,6 @@
 package br.com.alura.LiterAlura;
 
 import br.com.alura.LiterAlura.main.Principal;
-import br.com.alura.LiterAlura.models.author.Author;
 import br.com.alura.LiterAlura.repository.author.AuthorRepository;
 import br.com.alura.LiterAlura.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;

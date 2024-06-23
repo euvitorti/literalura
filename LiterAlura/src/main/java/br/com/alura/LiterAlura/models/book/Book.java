@@ -19,22 +19,20 @@ public class Book {
 
     private String title;
 
-//    private List<AuthorDTO> authors;
-
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> subjects;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> languages;
 
-    @ElementCollection
     @MapKeyColumn(name = "format_type")
     @Column(name = "format_url")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> formats;
 
     // RELACIONANDO COM A TABELA SERIES
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private Author author;
 
@@ -43,10 +41,13 @@ public class Book {
     public Book(ResultDataBookDTO data) {
 
         this.title = data.title();
-//        this.authors = data.authors();
         this.subjects = data.subjects();
         this.languages = data.languages();
         this.formats = data.formats();
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Author getAuthor() {
@@ -56,6 +57,15 @@ public class Book {
     public void setAuthor(Author author) {
         this.author = author;
     }
+
+    public List<String> getSubjects() {
+        return subjects;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
     @Override
     public String toString() {
 

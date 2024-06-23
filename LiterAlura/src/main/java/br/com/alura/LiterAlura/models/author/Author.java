@@ -20,7 +20,7 @@ public class Author {
     private int deathYear;
 
     //RELACIONANDO COM A TABELA AUTHOR
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Book> bookList = new ArrayList<>();
 
     public Author(){}
@@ -43,7 +43,7 @@ public class Author {
     @Override
     public String toString() {
         return "\nAuthor: " + name + "\n" +
-                "Birth Year: " + birthYear +
+                "Birth Year: " + birthYear + "\n" +
                 "Death Year: " + deathYear;
     }
 }
